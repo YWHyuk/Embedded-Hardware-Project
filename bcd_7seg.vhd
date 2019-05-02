@@ -47,16 +47,19 @@ begin
 						"100000" when sel_in = "101" else
 						"000000";
 	
-	Y <= 	"00111111" when (bcd_in = "0000") else --1
-			"00000110" when (bcd_in = "0001") else --2
-			"01011011" when (bcd_in = "0010") else --3
-			"01001111" when (bcd_in = "0011") else --4
-			"01100110" when (bcd_in = "0100") else --5
-			"01101101" when (bcd_in = "0101") else --6 
-			"01111100" when (bcd_in = "0110") else --7 
-			"00000111" when (bcd_in = "1000") else --8
-			"01111111" when (bcd_in = "1001") else --9
-			"00000000";
+	
+	Y <= 	"00111111" when (bcd_in = "0000") else --0
+		"00000110" when (bcd_in = "0001") else --1
+		"01011011" when (bcd_in = "0010") else --2
+		"01001111" when (bcd_in = "0011") else --3
+		"01100110" when (bcd_in = "0100") else --4
+		"01101101" when (bcd_in = "0101") else --5 
+		"01111100" when (bcd_in = "0110") else --6
+		"00000111" when (bcd_in = "0111") else --7 
+		"01111111" when (bcd_in = "1000") else --8
+		"01100111" when (bcd_in = "1001") else --9
+		"00000000";
+	
 	
 end Behavioral;
 
