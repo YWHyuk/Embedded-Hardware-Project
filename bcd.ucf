@@ -1,0 +1,19 @@
+net clk loc=AB12;
+net n_rst loc=H5;
+NET n_push LOC=G5;
+
+NET seg_data<7> LOC=B9;
+NET seg_data<6> LOC=E9;
+NET seg_data<5> LOC=F9;
+NET seg_data<4> LOC=A8;
+NET seg_data<3> LOC=B8;
+NET seg_data<2> LOC=D8;
+NET seg_data<1> LOC=E8;
+NET seg_data<0> LOC=A7;
+
+NET sel_7segs<5> LOC=D6;
+NET sel_7segs<4> LOC=C6;
+NET sel_7segs<3> LOC=B6;
+NET sel_7segs<2> LOC=E7;
+NET sel_7segs<1> LOC=D7;
+NET sel_7segs<0> LOC=B7;
