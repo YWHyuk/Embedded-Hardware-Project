@@ -1,0 +1,32 @@
+net clk loc=AB12;
+net n_rst loc=H5;
+NET n_push1 LOC=G5;
+NET n_push2 LOC=G3;
+NET n_push3 LOC=G4;
+
+NET line1<7> LOC=N3;
+NET line1<6> LOC=N2;
+NET line1<5> LOC=N1;
+NET line1<4> LOC=M6;
+NET line1<3> LOC=M5;
+NET line1<2> LOC=M4;
+NET line1<1> LOC=M3;
+NET line1<0> LOC=M2;
+
+NET line2<7> LOC=C22;
+NET line2<6> LOC=L21;
+NET line2<5> LOC=L22;
+NET line2<4> LOC=W16;
+NET line2<3> LOC=V14;
+NET line2<2> LOC=V13;
+NET line2<1> LOC=V12;
+NET line2<0> LOC=Y12;
+
+NET line3<7> LOC=Y1;
+NET line3<6> LOC=W4;
+NET line3<5> LOC=W3;
+NET line3<4> LOC=W2;
+NET line3<3> LOC=U2;
+NET line3<2> LOC=T3;
+NET line3<1> LOC=H2;
+NET line3<0> LOC=L2;
