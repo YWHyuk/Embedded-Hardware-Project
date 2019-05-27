@@ -30,5 +30,12 @@
 * **Description**: score 비트 1번은 1점, score 비트 2번은 2점, 둘 다 켜지면 3점
 * **Branch**: score
 
+### 2.1.4. RNG module(양원혁)
+<img src="https://github.com/YWHyuk/Embedded-Hardware-Project/blob/master/img/RNG%20module.png" width="90%"></img>
+
+* **Input**: noise 비트 1개, clock 비트 1개
+* **Output**: o[31:0] 
+* **Description**: 의사 난수 발생은 linear feedback shift register로 발생되며, US 특허 6,581,078 B1를 참고하였다. 
+
 
 
