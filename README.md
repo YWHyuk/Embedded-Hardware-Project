@@ -11,7 +11,7 @@
 ### 2.1.1. line module(양원혁)
 <img src="https://github.com/YWHyuk/Embedded-Hardware-Project/blob/master/img/line%20module.png" width="90%"></img>
 
-* **Input**: random 비트 3개, clock 비트 1개
+* **Input**: random 비트 3개, clock 비트 1개, nclr 비트 1개(저장된 레지스터를 초기화)
 * **Ouput**: line[7:0] 벡터 비트 3개
 * **Branch**: line 
 
