@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   02:22:11 05/06/2019
+-- Create Date:   05:35:02 05/27/2019
 -- Design Name:   
--- Module Name:   E:/line/lineTB.vhd
--- Project Name:  line
+-- Module Name:   F:/Dector/LineAndDetectorTB.vhd
+-- Project Name:  Dector
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: line
+-- VHDL Test Bench Created by ISE for module: LineAndDetector
 -- 
 -- Dependencies:
 -- 
@@ -32,23 +32,27 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY lineTB IS
-END lineTB;
+ENTITY LineAndDetectorTB IS
+END LineAndDetectorTB;
  
-ARCHITECTURE behavior OF lineTB IS 
+ARCHITECTURE behavior OF LineAndDetectorTB IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT line
+    COMPONENT LineAndDetector
     PORT(
          random1 : IN  std_logic;
          random2 : IN  std_logic;
          random3 : IN  std_logic;
          clk : IN  std_logic;
          nclr : IN  std_logic;
+         btn1 : IN  std_logic;
+         btn2 : IN  std_logic;
+         btn3 : IN  std_logic;
          line1 : OUT  std_logic_vector(7 downto 0);
          line2 : OUT  std_logic_vector(7 downto 0);
-         line3 : OUT  std_logic_vector(7 downto 0)
+         line3 : OUT  std_logic_vector(7 downto 0);
+         score : OUT  std_logic_vector(1 downto 0)
         );
     END COMPONENT;
     
@@ -59,27 +63,35 @@ ARCHITECTURE behavior OF lineTB IS
    signal random3 : std_logic := '0';
    signal clk : std_logic := '0';
    signal nclr : std_logic := '0';
+   signal btn1 : std_logic := '0';
+   signal btn2 : std_logic := '0';
+   signal btn3 : std_logic := '0';
 
  	--Outputs
    signal line1 : std_logic_vector(7 downto 0);
    signal line2 : std_logic_vector(7 downto 0);
    signal line3 : std_logic_vector(7 downto 0);
+   signal score : std_logic_vector(1 downto 0);
 
    -- Clock period definitions
-   constant clk_period : time := 50 ns;
+   constant clk_period : time := 10 ns;
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: line PORT MAP (
+   uut: LineAndDetector PORT MAP (
           random1 => random1,
           random2 => random2,
           random3 => random3,
           clk => clk,
           nclr => nclr,
+          btn1 => btn1,
+          btn2 => btn2,
+          btn3 => btn3,
           line1 => line1,
           line2 => line2,
-          line3 => line3
+          line3 => line3,
+          score => score
         );
 
    -- Clock process definitions
@@ -96,28 +108,32 @@ BEGIN
    stim_proc: process
    begin		
       -- hold reset state for 100 ns.
-		nclr<='0';
-	   wait for 20ns;
-	   nclr<='1';
-	   random1<='1';
-	   random2<='1';
-	   random3<='1';
-	   
-		wait for clk_period*2;
-		random1<='1';
-	   random2<='0';
-	   random3<='0';
+      nclr <='0';
+		wait for 100 ns;
+		nclr <='1';
+		random1 <='1';
+      random2 <='1';
+      random3 <='1';
+      
+		wait for clk_period*10;
+		--btn1 <= '1';
+		btn2 <= '1';
+		--btn3 <= '1';
+      wait for clk_period;
+		btn2 <= '0';
+		--btn3 <= '1';
+      wait for clk_period;
+		btn2 <= '1';
+		--btn3 <= '1';
+      wait for clk_period;
+		btn2 <= '0';
+		--btn3 <= '1';
+      wait for clk_period*2;
+		btn2 <= '1';
+		--btn3 <= '1';
+      wait for clk_period;
 		
-		wait for clk_period*2;
-		random1<='0';
-	   random2<='1';
-	   random3<='1';
-		wait for clk_period*3;
-		random1<='0';
-	   random2<='0';
-	   random3<='0';
-
-      -- insert stimulus here 
+		-- insert stimulus here 
 
       wait;
    end process;

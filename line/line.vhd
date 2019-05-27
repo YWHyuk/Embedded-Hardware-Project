@@ -31,7 +31,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity line is
 	port( random1,random2,random3 : in std_logic;
-			clk,nclr : in std_logic;
+			clk : in std_logic;
+			nclr1,nclr2,nclr3 : in std_logic_vector(7 downto 0);
 			line1,line2,line3 : out std_logic_vector(7 downto 0)
 	);
 end line;
@@ -39,13 +40,12 @@ end line;
 architecture Behavioral of line is
 component shiftreg8bit is
 	port( d, clk : in std_logic;
-			nclr	 : in std_logic;
+			nclr	 : in std_logic_vector(7 downto 0);
 			line   : out std_logic_vector(7 downto 0)
 	);
 end component;
 begin
-	shiftreg8bit1: shiftreg8bit port map(random1,clk,nclr,line1);
-	shiftreg8bit2: shiftreg8bit port map(random2,clk,nclr,line2);
-	shiftreg8bit3: shiftreg8bit port map(random3,clk,nclr,line3);
+	shiftreg8bit1: shiftreg8bit port map(random1,clk,nclr1,line1);
+	shiftreg8bit2: shiftreg8bit port map(random2,clk,nclr2,line2);
+	shiftreg8bit3: shiftreg8bit port map(random3,clk,nclr3,line3);
 end Behavioral;
-
