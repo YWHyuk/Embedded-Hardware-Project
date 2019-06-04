@@ -180,313 +180,313 @@ begin
 					( vsync_cnt <= (tVW + tVBP +16))) then
 						
 						if ( line1(0) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP +17 )) and 
 					( vsync_cnt <= (tVW + tVBP + 33))) then
 					
 						if ( line1(1) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 
 				elsif ( ( vsync_cnt >= (tVW + tVBP +34 )) and 
 					( vsync_cnt <= (tVW + tVBP + 50))) then
 					
 						if ( line1(2) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 51 )) and 
 					( vsync_cnt <= (tVW + tVBP + 67))) then
 						
 						if ( line1(3) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 68 )) and 
 					( vsync_cnt <= (tVW + tVBP + 84))) then
 						
 						if ( line1(4) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 85 )) and 
 					( vsync_cnt <= (tVW + tVBP + 101))) then
 						
 						if ( line1(5) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 102 )) and 
 					( vsync_cnt <= (tVW + tVBP + 118))) then
 						
 						if ( line1(6) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 119 )) and 
 					( vsync_cnt <= (tVW + tVBP + 135))) then
 						
 						if ( line1(7) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 
 				elsif( ( vsync_cnt >= (tVW + tVBP + 136 )) and 
 					( vsync_cnt <= (tVW + tVBP + 152))) then
 						
 						if ( line1(8) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 153 )) and 
 					( vsync_cnt <= (tVW + tVBP + 169))) then
 					
 						if ( line1(9) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 170 )) and 
 					( vsync_cnt <= (tVW + tVBP + 186))) then
 					
 						if ( line1(10) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 187 )) and 
 					( vsync_cnt <= (tVW + tVBP + 203))) then
 						
 						if ( line1(11) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 204 )) and 
 					( vsync_cnt <= (tVW + tVBP + 220))) then
 						
 						if ( line1(12) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 221 )) and 
 					( vsync_cnt <= (tVW + tVBP + 237))) then
 						
 						if ( line1(13) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 238 )) and 
 					( vsync_cnt <= (tVW + tVBP + 254))) then
 						
 						if ( line1(14) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 						
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 255 )) and 
 					( vsync_cnt <= (tVW + tVBP + 271))) then
 						
 						if ( line1(15) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 272 )) and 
 					( vsync_cnt <= (tVW + tVBP + 288))) then
 						
 						if ( line1(16) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 289 )) and 
 					( vsync_cnt <= (tVW + tVBP + 305))) then
 						
 						if ( line1(17) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 306 )) and 
 					( vsync_cnt <= (tVW + tVBP + 322))) then
 						
 						if ( line1(18) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 323 )) and 
 					( vsync_cnt <= (tVW + tVBP + 339))) then
 						
 						if ( line1(19) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 340 )) and 
 					( vsync_cnt <= (tVW + tVBP + 356))) then
 						
 						if ( line1(20) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 357 )) and 
 					( vsync_cnt <= (tVW + tVBP + 373))) then
 						
 						if ( line1(21) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 374 )) and 
 					( vsync_cnt <= (tVW + tVBP + 390))) then
 						
 						if ( line1(22) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 391 )) and 
 					( vsync_cnt <= (tVW + tVBP + 407))) then
 						
 						if ( line1(23) = '1') then 
-							r_data<= (others=>'1');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
+							r_data<= "00110";
+							g_data<= "001100";
+							b_data<= "00110";
 						else
-							r_data<= (others=>'0');
-							g_data<= (others=>'0');
-							b_data<= (others=>'0');
-						end if;
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 							
 				end if;
 --TODO
