@@ -35,7 +35,7 @@ entity TFT_LCD is
 				inv_RST : in  STD_LOGIC;
 				line1,line2,line3 : in std_logic_vector(23 downto 0);
 				line4,line5,line6 : in std_logic_vector(23 downto 0);
-				btn1, btn2, btn3 : in std_logic;
+				correct1, correct2 : in std_logic;
 				hsync : out STD_LOGIC;
 				vsync : out STD_LOGIC;
 				data_out : out  STD_LOGIC_VECTOR (15 downto 0);
@@ -71,7 +71,7 @@ architecture Behavioral of TFT_LCD is
 begin
 	
 	-- Hsync CNT
-	process(CLK, inv_RST)         --  sync Â¡Ã†eÂ¡Ã­e
+	process(CLK, inv_RST)         --  sync ¢®¨¡e¢®ie
 		begin
 			if(inv_RST = '0')then
 			hsync_cnt <= (others => '0');
@@ -85,7 +85,7 @@ begin
 	end process;
 
 	-- Vsync CNT
-	process(CLK, inv_RST)         --  sync Â¡Ã†eÂ¡Ã­e
+	process(CLK, inv_RST)         --  sync ¢®¨¡e¢®ie
 	begin
 		if(inv_RST = '0')then
 	--		vsync_cnt<= 0;
@@ -431,7 +431,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 323 )) and 
-					( vsync_cnt <= (tVW + tVBP + 339))) then
+					( vsync_cnt <= (tVW + tVBP + 336))) then
 						
 						if ( line1(21) = '1') then 
 							r_data<= "00110";
@@ -442,8 +442,8 @@ begin
 							g_data<= (others=>'1');
 							b_data<= (others=>'1');
 						end if;	
-							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 340 )) and 
+						
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 343 )) and 
 					( vsync_cnt <= (tVW + tVBP + 356))) then
 						
 						if ( line1(22) = '1') then 
@@ -457,7 +457,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 357 )) and 
-					( vsync_cnt <= (tVW + tVBP + 373))) then
+					( vsync_cnt <= (tVW + tVBP + 370))) then
 						
 						if ( line1(22) = '1') then 
 							r_data<= "00110";
@@ -469,7 +469,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 374 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 377 )) and 
 					( vsync_cnt <= (tVW + tVBP + 390))) then
 						
 						if ( line1(23) = '1') then 
@@ -494,7 +494,18 @@ begin
 							g_data<= (others=>'1');
 							b_data<= (others=>'1');
 						end if;	
-							
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 420 )) and 
+					( vsync_cnt <= (tVW + tVBP + 460))) then
+						
+						if ( correct1 = '1') then 
+							r_data<= (others=>'0');
+							g_data<= (others=>'0');
+							b_data<= (others=>'1');
+						else
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;				
 				else
 					r_data<= "10001";
 					g_data<= "100000";
@@ -756,7 +767,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 323 )) and 
-					( vsync_cnt <= (tVW + tVBP + 339))) then
+					( vsync_cnt <= (tVW + tVBP + 336))) then
 						
 						if ( line2(21) = '1') then 
 							r_data<= "00110";
@@ -768,7 +779,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 340 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 343 )) and 
 					( vsync_cnt <= (tVW + tVBP + 356))) then
 						
 						if ( line2(22) = '1') then 
@@ -782,7 +793,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 357 )) and 
-					( vsync_cnt <= (tVW + tVBP + 373))) then
+					( vsync_cnt <= (tVW + tVBP + 370))) then
 						
 						if ( line2(22) = '1') then 
 							r_data<= "00110";
@@ -794,7 +805,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 374 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 377 )) and 
 					( vsync_cnt <= (tVW + tVBP + 390))) then
 						
 						if ( line2(23) = '1') then 
@@ -819,6 +830,18 @@ begin
 							g_data<= (others=>'1');
 							b_data<= (others=>'1');
 						end if;	
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 420 )) and 
+					( vsync_cnt <= (tVW + tVBP + 460))) then
+						
+						if ( correct1 = '1') then 
+							r_data<= (others=>'0');
+							g_data<= (others=>'0');
+							b_data<= (others=>'1');
+						else
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
 				else
 					r_data<= "10001";
 					g_data<= "100000";
@@ -831,7 +854,7 @@ begin
 				g_data<= "100000";
 				b_data<= "01111";
 			elsif ( ( hsync_cnt >= (tHW+tHBP + 207 )) and 
-				( hsync_cnt <= (tHW+tHBP + 260))) then
+				( hsync_cnt <= (tHW+tHBP + 261))) then
 				if( ( vsync_cnt >= (tVW + tVBP -1 )) and 
 					( vsync_cnt <= (tVW + tVBP +16))) then
 						
@@ -1080,7 +1103,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 323 )) and 
-					( vsync_cnt <= (tVW + tVBP + 339))) then
+					( vsync_cnt <= (tVW + tVBP + 336))) then
 						
 						if ( line3(21) = '1') then 
 							r_data<= "00110";
@@ -1092,7 +1115,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 340 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 343 )) and 
 					( vsync_cnt <= (tVW + tVBP + 356))) then
 						
 						if ( line3(22) = '1') then 
@@ -1106,7 +1129,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 357 )) and 
-					( vsync_cnt <= (tVW + tVBP + 373))) then
+					( vsync_cnt <= (tVW + tVBP + 370))) then
 						
 						if ( line3(22) = '1') then 
 							r_data<= "00110";
@@ -1118,7 +1141,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 374 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 377 )) and 
 					( vsync_cnt <= (tVW + tVBP + 390))) then
 						
 						if ( line3(23) = '1') then 
@@ -1138,6 +1161,18 @@ begin
 							r_data<= "00110";
 							g_data<= "001100";
 							b_data<= "00110";
+						else
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 420 )) and 
+					( vsync_cnt <= (tVW + tVBP + 460))) then
+						
+						if ( correct1 = '1') then 
+							r_data<= (others=>'0');
+							g_data<= (others=>'0');
+							b_data<= (others=>'1');
 						else
 							r_data<= (others=>'1');
 							g_data<= (others=>'1');
@@ -1409,7 +1444,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 323 )) and 
-					( vsync_cnt <= (tVW + tVBP + 339))) then
+					( vsync_cnt <= (tVW + tVBP + 336))) then
 						
 						if ( line4(21) = '1') then 
 							r_data<= "00110";
@@ -1421,7 +1456,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 340 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 343 )) and 
 					( vsync_cnt <= (tVW + tVBP + 356))) then
 						
 						if ( line4(22) = '1') then 
@@ -1435,7 +1470,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 357 )) and 
-					( vsync_cnt <= (tVW + tVBP + 373))) then
+					( vsync_cnt <= (tVW + tVBP + 370))) then
 						
 						if ( line4(22) = '1') then 
 							r_data<= "00110";
@@ -1447,7 +1482,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 374 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 377 )) and 
 					( vsync_cnt <= (tVW + tVBP + 390))) then
 						
 						if ( line4(23) = '1') then 
@@ -1467,6 +1502,18 @@ begin
 							r_data<= "00110";
 							g_data<= "001100";
 							b_data<= "00110";
+						else
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;	
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 420 )) and 
+					( vsync_cnt <= (tVW + tVBP + 460))) then
+						
+						if ( correct2 = '1') then 
+							r_data<= (others=>'0');
+							g_data<= (others=>'0');
+							b_data<= (others=>'1');
 						else
 							r_data<= (others=>'1');
 							g_data<= (others=>'1');
@@ -1733,7 +1780,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 323 )) and 
-					( vsync_cnt <= (tVW + tVBP + 339))) then
+					( vsync_cnt <= (tVW + tVBP + 336))) then
 						
 						if ( line5(21) = '1') then 
 							r_data<= "00110";
@@ -1745,7 +1792,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 340 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 343 )) and 
 					( vsync_cnt <= (tVW + tVBP + 356))) then
 						
 						if ( line5(22) = '1') then 
@@ -1759,7 +1806,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 357 )) and 
-					( vsync_cnt <= (tVW + tVBP + 373))) then
+					( vsync_cnt <= (tVW + tVBP + 370))) then
 						
 						if ( line5(22) = '1') then 
 							r_data<= "00110";
@@ -1771,7 +1818,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 374 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 377 )) and 
 					( vsync_cnt <= (tVW + tVBP + 390))) then
 						
 						if ( line5(23) = '1') then 
@@ -1795,7 +1842,19 @@ begin
 							r_data<= (others=>'1');
 							g_data<= (others=>'1');
 							b_data<= (others=>'1');
-						end if;	
+						end if;
+			elsif ( ( vsync_cnt >= (tVW + tVBP + 420 )) and 
+					( vsync_cnt <= (tVW + tVBP + 460))) then
+						
+						if ( correct2 = '1') then 
+							r_data<= (others=>'0');
+							g_data<= (others=>'0');
+							b_data<= (others=>'1');
+						else
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;						
 				else
 					r_data<= "10001";
 					g_data<= "100000";
@@ -2057,7 +2116,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 323 )) and 
-					( vsync_cnt <= (tVW + tVBP + 339))) then
+					( vsync_cnt <= (tVW + tVBP + 336))) then
 						
 						if ( line6(21) = '1') then 
 							r_data<= "00110";
@@ -2069,7 +2128,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 340 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 343 )) and 
 					( vsync_cnt <= (tVW + tVBP + 356))) then
 						
 						if ( line6(22) = '1') then 
@@ -2083,7 +2142,7 @@ begin
 						end if;	
 							
 				elsif ( ( vsync_cnt >= (tVW + tVBP + 357 )) and 
-					( vsync_cnt <= (tVW + tVBP + 373))) then
+					( vsync_cnt <= (tVW + tVBP + 370))) then
 						
 						if ( line6(22) = '1') then 
 							r_data<= "00110";
@@ -2095,7 +2154,7 @@ begin
 							b_data<= (others=>'1');
 						end if;	
 							
-				elsif ( ( vsync_cnt >= (tVW + tVBP + 374 )) and 
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 377 )) and 
 					( vsync_cnt <= (tVW + tVBP + 390))) then
 						
 						if ( line6(23) = '1') then 
@@ -2119,7 +2178,19 @@ begin
 							r_data<= (others=>'1');
 							g_data<= (others=>'1');
 							b_data<= (others=>'1');
-						end if;	
+						end if;
+				elsif ( ( vsync_cnt >= (tVW + tVBP + 420 )) and 
+					( vsync_cnt <= (tVW + tVBP + 460))) then
+						
+						if ( correct2 = '1') then 
+							r_data<= (others=>'0');
+							g_data<= (others=>'0');
+							b_data<= (others=>'1');
+						else
+							r_data<= (others=>'1');
+							g_data<= (others=>'1');
+							b_data<= (others=>'1');
+						end if;						
 				else
 					r_data<= "10001";
 					g_data<= "100000";
