@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    01:35:45 05/06/2019 
+-- Create Date:    04:21:25 05/27/2019 
 -- Design Name: 
--- Module Name:    shiftre - Behavioral 
+-- Module Name:    OneBitDetector - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,25 +29,30 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity  shiftre is 
-port( d, clk, nclr	: in std_logic;
-         qa				: out std_logic
-);
-end shiftre;
-
-architecture a of shiftre is
-	signal tqa: std_logic;
-	
+entity OneBitDetector is
+    Port ( btn : in  STD_LOGIC;
+           reg : in  STD_LOGIC;
+			  clk : in	STD_LOGIC;
+           score : out  STD_LOGIC;
+           nclr : out  STD_LOGIC);
+end OneBitDetector;
+architecture Behavioral of OneBitDetector is
+	signal temp : std_logic := '0';
 begin
-	process(nclr,clk)
+	-- simple combination logic
+	--     <Boolean table>
+	-- btn reg | score clr nclr
+	--  0   0  |   0    0    1
+	--  0   1  |   0    0    1
+	--  1   0  |   0    0    1
+	--  1   1  |   1    1    0
+	process(clk)
 	begin
-		if( nclr='0') then
-			tqa <='0'; 
-		else
-			if(clk'event and clk='1') then
-				tqa <= d;
-			end if;
+		if rising_edge(clk) then
+			temp <= reg;
 		end if;
 	end process;
-	qa<=tqa; 
-end a;
+	score <= btn and temp;
+	nclr <= not (btn and temp); --delay one cycle
+end Behavioral;
+

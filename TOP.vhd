@@ -50,11 +50,12 @@ architecture Behavioral of TOP is
 				pevent : out  STD_LOGIC);
 	end component;
 	
-	component line is
-		port( random1,random2,random3 : in std_logic;
-				clk, nclr : in std_logic;
-				line1,line2,line3 : out std_logic_vector(7 downto 0)
-		);
+	component LineAndDetector is
+    Port ( random1,random2,random3 : in  STD_LOGIC;
+           clk,nclr : in  STD_LOGIC;
+           btn1,btn2,btn3 : in  STD_LOGIC;
+           line1,line2,line3 : out  STD_LOGIC_VECTOR (7 downto 0);
+           score : out  STD_LOGIC_VECTOR (1 downto 0));
 	end component;
 	
 	component clock_divider is
@@ -98,7 +99,7 @@ architecture Behavioral of TOP is
 	end component;
 	signal tline1, tline2, tline3 : std_logic_vector(7 downto 0);
 	signal key_push: std_logic;
-	signal check : std_logic;
+	signal check : std_logic_vector(1 downto 0);
 	
 	COMPONENT lcd_clk_25m is
 		port ( CLKIN_IN        : in    std_logic; 
@@ -110,14 +111,17 @@ architecture Behavioral of TOP is
 	end COMPONENT;
 
 	COMPONENT TFT_LCD is
-	    Port ( 	CLK : in  STD_LOGIC;
-					inv_RST : in  STD_LOGIC;
-					line1,line2,line3 : in std_logic_vector(7 downto 0);
-					hsync : out STD_LOGIC;
-					vsync : out STD_LOGIC;
-					data_out : out  STD_LOGIC_VECTOR (15 downto 0);
-					de : out  STD_LOGIC
+    Port ( 	CLK : in  STD_LOGIC;
+				inv_RST : in  STD_LOGIC;
+				line1,line2,line3 : in std_logic_vector(7 downto 0);
+				btn1, btn2, btn3 : in std_logic;
+				hsync : out STD_LOGIC;
+				vsync : out STD_LOGIC;
+				data_out : out  STD_LOGIC_VECTOR (15 downto 0);
+				de : out  STD_LOGIC
+				
 		 );
+
 	end COMPONENT;
 	
 
@@ -126,6 +130,15 @@ architecture Behavioral of TOP is
 	signal lcd_den : std_logic;
 	signal hsync, vsync : std_logic;
 	
+	COMPONENT RNG is
+	 Port ( clk,noise : in  STD_LOGIC;
+				nclr : in STD_LOGIC;
+			  o : out  STD_LOGIC_VECTOR(31 downto 0));
+	end COMPONENT;
+	
+	signal rand_array : std_logic_vector (31 downto 0);
+	signal nwbk1, nwbk2, nwbk3 : std_logic;
+	signal k_push1, k_push2, k_push3 : std_logic;
 	
 begin
 
@@ -135,25 +148,35 @@ begin
 	KEYPAD_CLOCK : clock_divider port map (tclk, reset, "0000000000000000000000100000000", div_clk_keypad);
 	KEYPAD :	Key_Matrix port map (div_clk_keypad, reset, key_in, key_event, key_scan, key_data);
 	KEYPAD_PUSH_EVENT : push_button port map (div_clk_keypad, reset, not key_event, key_push);
-
---
-
---	bcd0 <= key_data;	
---	bcd1 <= key_data;	
---	bcd2 <= key_data;	
---	bcd3 <= key_data;	
---	bcd4 <= key_data;	
---	bcd5 <= key_data;	
-   check <= key_push and tline1(5);
-	SCORE_COUNTER : digit6_counter port map ( div_clk_keypad, reset, check, bcd0, bcd1, bcd2, bcd3, bcd4, bcd5);
-	DISPLAY_SCORE: seven_seg6 port map (div_clk_keypad, reset, bcd0, bcd1, bcd2, bcd3, bcd4, bcd5, seg_data, sel_7segs);
-		
 	
---	U2 : button port map (clk, n_rst, n_push1, n_push2, n_push3, tmp1, tmp2, tmp3);
+	k_push1 <= key_push when key_data = X"1" else
+				  '0';
+	k_push2 <= key_push when key_data = X"2" else
+				  '0';
+	k_push3 <= key_push when key_data = X"3" else
+				  '0';
+--	k_push1 <= '1' when key_data = X"1" else
+--				  '0';
+--	k_push2 <= '1' when key_data = X"2" else
+--				  '0';
+--	k_push3 <= '1' when key_data = X"3" else
+--				  '0';
+
+
+   --check <= key_push and tline1(5);
+	SCORE_COUNTER : digit6_counter port map ( div_clk_keypad, reset, check(1), bcd0, bcd1, bcd2, bcd3, bcd4, bcd5);
+	DISPLAY_SCORE: seven_seg6 port map (div_clk_keypad, reset, bcd0, bcd1, bcd2, bcd3, bcd4, bcd5, seg_data, sel_7segs);
+	
+	RNG_MODULE : RNG port map(div_clk_line, not n_push1, reset, rand_array);
 
 --	LINE_CLOCK : clock_divider port map (tclk, reset, "0000010000000000000000000000000", div_clk_line);
-	LINE_CLOCK : clock_divider port map (tclk, reset, "0000000000100000000000000000000", div_clk_line);
-	LINE_LED : line port map (not n_push1, not n_push2 ,not n_push3, div_clk_line, n_reset, tline1, tline2, tline3);
+	LINE_CLOCK : clock_divider port map (tclk, reset, "0000000001000000000000000000000", div_clk_line);
+	
+	nwbk1 <= rand_array(0) and rand_array(3);
+	nwbk2 <= rand_array(5) and rand_array(9);
+	nwbk3 <= rand_array(10) and rand_array(21);
+
+	LINE_LED : LineAndDetector port map ( nwbk1, nwbk2, nwbk3 ,div_clk_line,n_reset, k_push1, k_push2, k_push3, tline1, tline2, tline3, check) ;
 	line1 <= tline1;
 	line2 <= tline2;
 	line3 <= tline3;
@@ -179,6 +202,9 @@ begin
 		line1 => tline1,
 		line2 => tline2,
 		line3 => tline3,
+		btn1 => k_push1,
+		btn2 => k_push2,
+		btn3 => k_push3,
 		hsync => hsync,
 		vsync => vsync,
 		data_out => data_out,

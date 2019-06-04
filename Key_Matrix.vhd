@@ -38,7 +38,7 @@ entity Key_Matrix is
 		-- to key pad
            key_scan : out  STD_LOGIC_VECTOR (3 downto 0);
 		 -- to display module
- 		key_data : out  STD_LOGIC_VECTOR (3 downto 0)); 
+			key_data : out  STD_LOGIC_VECTOR (3 downto 0)); 
 
 end Key_Matrix;
 

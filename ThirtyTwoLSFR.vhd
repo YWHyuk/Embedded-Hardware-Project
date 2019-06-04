@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    01:35:45 05/06/2019 
+-- Create Date:    07:07:52 05/20/2019 
 -- Design Name: 
--- Module Name:    shiftre - Behavioral 
+-- Module Name:    ThirtyTwoLSFR - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,25 +29,26 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity  shiftre is 
-port( d, clk, nclr	: in std_logic;
-         qa				: out std_logic
-);
-end shiftre;
+entity ThirtyTwoLSFR is
+    Port ( clk : in  STD_LOGIC;
+			  sel : in STD_LOGIC_VECTOR(31 downto 0);
+			  val : in STD_LOGIC;
+           o : out  STD_LOGIC_VECTOR(31 downto 0));
+end ThirtyTwoLSFR;
 
-architecture a of shiftre is
-	signal tqa: std_logic;
-	
+architecture Behavioral of ThirtyTwoLSFR is
+	signal x : STD_LOGIC_VECTOR(31 downto 0) := x"A00C0205";
 begin
-	process(nclr,clk)
+	process(clk,sel,val)
 	begin
-		if( nclr='0') then
-			tqa <='0'; 
-		else
-			if(clk'event and clk='1') then
-				tqa <= d;
+		if rising_edge(clk) then
+			if val = '1'then
+				x<= (x(30 downto 0) & (x(31) xor x(21) xor x(1) xor x(0))) or sel;
+			else
+				x<= (x(30 downto 0) & (x(31) xor x(21) xor x(1) xor x(0))) and (not sel);
 			end if;
 		end if;
 	end process;
-	qa<=tqa; 
-end a;
+	o <= x;
+end Behavioral;
+

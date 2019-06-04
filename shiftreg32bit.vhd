@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    01:35:45 05/06/2019 
+-- Create Date:    01:12:20 05/27/2019 
 -- Design Name: 
--- Module Name:    shiftre - Behavioral 
+-- Module Name:    shiftreg32bit - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,25 +29,26 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity  shiftre is 
-port( d, clk, nclr	: in std_logic;
-         qa				: out std_logic
-);
-end shiftre;
+entity shiftreg32bit is
+	port( d, clk : in std_logic;
+				nclr	 : in std_logic;
+				o   : out std_logic_vector(31 downto 0)
+		);
+end shiftreg32bit;
 
-architecture a of shiftre is
-	signal tqa: std_logic;
-	
+architecture Behavioral of shiftreg32bit is
+	component shiftreg8bit2 is
+	port( d, clk : in std_logic;
+			nclr	 : in std_logic;
+			line   : out std_logic_vector(7 downto 0)
+	);
+	end component;
+	signal o1,o2,o3,o4 : std_logic_vector(7 downto 0) :="00000000";
 begin
-	process(nclr,clk)
-	begin
-		if( nclr='0') then
-			tqa <='0'; 
-		else
-			if(clk'event and clk='1') then
-				tqa <= d;
-			end if;
-		end if;
-	end process;
-	qa<=tqa; 
-end a;
+	S1: shiftreg8bit2 port map(d,clk,nclr,o1);
+	S2: shiftreg8bit2 port map(o1(7),clk,nclr,o2);
+	S3: shiftreg8bit2 port map(o2(7),clk,nclr,o3);
+	S4: shiftreg8bit2 port map(o3(7),clk,nclr,o4);
+	o<= o4 & o3 & o2 & o1;
+end Behavioral;
+

@@ -29,25 +29,24 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity  shiftre is 
-port( d, clk, nclr	: in std_logic;
-         qa				: out std_logic
+entity  shiftreg is 
+port( d, clk,nclr : in std_logic;
+         qa   : out std_logic
 );
-end shiftre;
+end shiftreg;
 
-architecture a of shiftre is
+architecture a of shiftreg is
+	
 	signal tqa: std_logic;
 	
 begin
 	process(nclr,clk)
 	begin
-		if( nclr='0') then
-			tqa <='0'; 
-		else
-			if(clk'event and clk='1') then
-				tqa <= d;
-			end if;
-		end if;
+	     if( nclr='0') then
+		tqa <='0'; 
+		  elsif(clk'event and clk='1') then
+		tqa <= d; 
+		  end if;
 	end process;
 	qa<=tqa; 
 end a;

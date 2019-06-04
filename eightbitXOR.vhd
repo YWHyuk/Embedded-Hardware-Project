@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    01:35:45 05/06/2019 
+-- Create Date:    01:52:12 05/27/2019 
 -- Design Name: 
--- Module Name:    shiftre - Behavioral 
+-- Module Name:    eightbitXOR - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,25 +29,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity  shiftre is 
-port( d, clk, nclr	: in std_logic;
-         qa				: out std_logic
-);
-end shiftre;
+entity eightbitXOR is
+    Port ( i : in  STD_LOGIC_VECTOR (7 downto 0);
+           o : out  STD_LOGIC);
+end eightbitXOR;
 
-architecture a of shiftre is
-	signal tqa: std_logic;
-	
+architecture Behavioral of eightbitXOR is
+
 begin
-	process(nclr,clk)
-	begin
-		if( nclr='0') then
-			tqa <='0'; 
-		else
-			if(clk'event and clk='1') then
-				tqa <= d;
-			end if;
-		end if;
-	end process;
-	qa<=tqa; 
-end a;
+	o<= i(0) xor i(1) xor i(2) xor i(3) xor i(4) xor i(5) xor i(6) xor i(7); 
+end Behavioral;
+

@@ -2,9 +2,9 @@
 -- Company: 
 -- Engineer: 
 -- 
--- Create Date:    02:16:54 05/06/2019 
+-- Create Date:    01:37:59 05/06/2019 
 -- Design Name: 
--- Module Name:    line - Behavioral 
+-- Module Name:    shiftreg8bit - Behavioral 
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -29,23 +29,29 @@ use IEEE.STD_LOGIC_1164.ALL;
 --library UNISIM;
 --use UNISIM.VComponents.all;
 
-entity line is
-	port( random1,random2,random3 : in std_logic;
-			clk : in std_logic;
-			nclr1,nclr2,nclr3 : in std_logic_vector(7 downto 0);
-			line1,line2,line3 : out std_logic_vector(7 downto 0)
-	);
-end line;
-
-architecture Behavioral of line is
-component shiftreg8bit is
+entity shiftreg8bit2 is
 	port( d, clk : in std_logic;
-			nclr	 : in std_logic_vector(7 downto 0);
+			nclr	 : in std_logic;
 			line   : out std_logic_vector(7 downto 0)
 	);
+end shiftreg8bit2;
+
+architecture Behavioral of shiftreg8bit2 is
+component  shiftreg is 
+	port( d, clk,nclr : in std_logic;
+				qa   : out std_logic
+	);
 end component;
+	signal right: std_logic_vector (7 downto 0);
 begin
-	shiftreg8bit1: shiftreg8bit port map(random1,clk,nclr1,line1);
-	shiftreg8bit2: shiftreg8bit port map(random2,clk,nclr2,line2);
-	shiftreg8bit3: shiftreg8bit port map(random3,clk,nclr3,line3);
+	shift1:shiftreg port map(d,clk,nclr,right(0));
+	shift2:shiftreg port map(right(0),clk,nclr,right(1));
+	shift3:shiftreg port map(right(1),clk,nclr,right(2));
+	shift4:shiftreg port map(right(2),clk,nclr,right(3));
+	shift5:shiftreg port map(right(3),clk,nclr,right(4));
+	shift6:shiftreg port map(right(4),clk,nclr,right(5));
+	shift7:shiftreg port map(right(5),clk,nclr,right(6));
+	shift8:shiftreg port map(right(6),clk,nclr,right(7));
+	line <= right;
 end Behavioral;
+
